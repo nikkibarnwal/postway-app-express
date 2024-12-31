@@ -6,8 +6,8 @@ const jwtAuthMiddleware = (req, res, next) => {
   let token = req.headers.authorization;
   if (!token) {
     throw new CustomErrorHandler(
-      "Access denied, invalid token",
-      UNAUTHORIZED_CODE
+      UNAUTHORIZED_CODE,
+      "Access denied, invalid token"
     );
   }
   try {
@@ -17,8 +17,8 @@ const jwtAuthMiddleware = (req, res, next) => {
     next();
   } catch (error) {
     throw new CustomErrorHandler(
-      "Access denied, invalid token",
-      UNAUTHORIZED_CODE
+      UNAUTHORIZED_CODE,
+      "Access denied, invalid token"
     );
   }
 };

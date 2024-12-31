@@ -6,9 +6,9 @@ POST /signin - user login Done
 
 # Routes from posts.routes.js
 
-GET /posts/all - Get all posts
-GET /posts/:id - Get a post by ID
-GET /posts/ - Get all for loggedin user
+GET /posts/all - Get all posts Done
+GET /posts/:id - Get a post by ID Done
+GET /posts/ - Get all posts for loggedin user Done
 POST /posts/ - Create a new post for loggedin user
 PUT /posts/:id - Update a post by ID
 DELETE /posts/:id - Delete a post by ID
