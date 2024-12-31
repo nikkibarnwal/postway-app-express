@@ -1,7 +1,7 @@
 {
-  "name": "social-media-api",
+  "name": "postway-social-media-api",
   "version": "1.0.0",
-  "description": "It is social media api",
+  "description": "It is postway social media api",
   "main": "index.js",
   "type": "module",
   "scripts": {
