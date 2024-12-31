@@ -1,10 +1,9 @@
 import express from "express";
+import * as PostsController from "./post.controller.js";
 
 const postRouter = express.Router();
 
-postRouter.get("/all", (req, res) => {
-  res.send("Read all posts");
-});
+postRouter.get("/all", PostsController.all);
 postRouter.get("/:id", (req, res) => {
   res.send("Read single posts");
 });

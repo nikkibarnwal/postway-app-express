@@ -6,6 +6,8 @@ import postRouter from "./src/features/posts/post.routes.js";
 import commentRouter from "./src/features/comments/comment.routes.js";
 import likeRouter from "./src/features/likes/like.routes.js";
 import jwtAuthMiddleware from "./src/middlewares/jwtAuth.middleware.js";
+import errorHandlerMiddleware from "./src/middlewares/errorHandler.middleware.js";
+import invalidRoutesMiddleware from "./src/middlewares/invalidRoutes.middleware.js";
 
 /**2 create an express app */
 const app = express();
@@ -33,6 +35,12 @@ app.use("/api/comments", jwtAuthMiddleware, commentRouter);
 
 /**3.5 route for like management */
 app.use("/api/likes", jwtAuthMiddleware, likeRouter);
+
+/**3.6 Middleware to error handling */
+app.use(errorHandlerMiddleware);
+
+/**3.7 Middleware to handle invalid routes */
+app.use(invalidRoutesMiddleware);
 
 /**4 start the server at given port */
 app.listen(process.env.PORT, () => {

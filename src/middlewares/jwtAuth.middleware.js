@@ -1,11 +1,14 @@
 import jwt from "jsonwebtoken";
+import CustomErrorHandler from "../error/CustomErrorHandler.js";
+import { UNAUTHORIZED_CODE } from "../utils/common.js";
 
 const jwtAuthMiddleware = (req, res, next) => {
   let token = req.headers.authorization;
   if (!token) {
-    return res
-      .status(process.env.UNAUTHORIZED_CODE)
-      .json({ success: false, message: "Access denied" });
+    throw new CustomErrorHandler(
+      "Access denied, invalid token",
+      UNAUTHORIZED_CODE
+    );
   }
   try {
     token = token.split(" ")[1].trim();
@@ -13,9 +16,10 @@ const jwtAuthMiddleware = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    res
-      .status(process.env.UNAUTHORIZED_CODE)
-      .json({ success: false, message: "Invalid token" });
+    throw new CustomErrorHandler(
+      "Access denied, invalid token",
+      UNAUTHORIZED_CODE
+    );
   }
 };
 
