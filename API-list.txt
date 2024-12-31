@@ -1,0 +1,30 @@
+# Routes from user.routes.js
+
+POST /signup - Create a new user Done
+POST /signin - user login Done
+
+
+# Routes from posts.routes.js
+
+GET /posts/all - Get all posts
+GET /posts/:id - Get a post by ID
+GET /posts/ - Get all for loggedin user
+POST /posts/ - Create a new post for loggedin user
+PUT /posts/:id - Update a post by ID
+DELETE /posts/:id - Delete a post by ID
+
+
+# Routes from comment.routes.js
+
+GET /comments - Get all comments
+POST /comments - Create a new comment
+PUT /comments/:id - Update a comment by ID
+DELETE /comments/:id - Delete a comment by ID
+
+
+
+# Routes from like.routes.js
+
+GET /likes/:id - Get all like by post ID
+GET /likes/toggle/:id - toggle a like by post ID
+
