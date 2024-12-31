@@ -1,0 +1,28 @@
+{
+  "name": "social-media-api",
+  "version": "1.0.0",
+  "description": "It is social media api",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikkibarnwal/social-media-express.git"
+  },
+  "keywords": [
+    "social-media"
+  ],
+  "author": "nikki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikkibarnwal/social-media-express/issues"
+  },
+  "homepage": "https://github.com/nikkibarnwal/social-media-express#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
