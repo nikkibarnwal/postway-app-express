@@ -1,5 +1,6 @@
 import {
-  INTERNAL_SERVER_ERROR_CODE,
+  BAD_REQUEST_CODE,
+  CREATED_CODE,
   NOT_FOUND_CODE,
   SUCCESS_CODE,
 } from "../../utils/common.js";
@@ -33,8 +34,15 @@ export const allPostByUser = (req, res) => {
   res.status(SUCCESS_CODE).json({ success: true, data: posts });
 };
 
+/** create a new post */
 export const createPosts = (req, res) => {
+  if (!req.file) {
+    throw new CustomErrorHandler(BAD_REQUEST_CODE, "No file uploaded.");
+  }
   /** get the user id from the request object by jwt middleware */
   const { id } = req.user;
   const { caption } = req.body;
+  const imageUrl = req.file.filename;
+  const newpost = PostModel.create({ userId: id, caption, imageUrl });
+  res.status(CREATED_CODE).json({ success: true, data: newpost });
 };

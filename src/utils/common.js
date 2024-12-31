@@ -1,5 +1,8 @@
-export const uid = () =>
-  Date.now().toString(36) + Math.random().toString(36).substring(2);
+import path from "path";
+
+export const imagesPath = path.join(path.resolve(), "uploads");
+
+export const uid = () => Date.now() + Math.floor(Math.random() * 1000000000);
 /**Status Codes*/
 export const SUCCESS_CODE = 200;
 export const CREATED_CODE = 201;
