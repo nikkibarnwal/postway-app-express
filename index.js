@@ -9,6 +9,7 @@ import jwtAuthMiddleware from "./src/middlewares/jwtAuth.middleware.js";
 import errorHandlerMiddleware from "./src/middlewares/errorHandler.middleware.js";
 import invalidRoutesMiddleware from "./src/middlewares/invalidRoutes.middleware.js";
 import loggerMiddleware from "./src/middlewares/logger.middleware.js";
+import bookmarkRouter from "./src/features/bookmark/bookmark.routes.js";
 
 /**2 create an express app */
 const app = express();
@@ -39,6 +40,9 @@ app.use("/api/comments", jwtAuthMiddleware, commentRouter);
 
 /**3.5 route for like management */
 app.use("/api/likes", jwtAuthMiddleware, likeRouter);
+
+/**3.6 route for bookmark */
+app.use("/api/bookmarks", jwtAuthMiddleware, bookmarkRouter);
 
 /**3.6 Middleware to error handling */
 app.use(errorHandlerMiddleware);

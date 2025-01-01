@@ -1,5 +1,6 @@
-import { uid } from "../../utils/common.js";
-
+import CustomErrorHandler from "../../error/CustomErrorHandler.js";
+import { currentDateTime, NOT_FOUND_CODE, uid } from "../../utils/common.js";
+import * as PostModel from "../posts/post.model.js";
 const likes = [
   {
     id: 1,
@@ -39,11 +40,15 @@ export const toggleLike = (userId, postId) => {
   );
   /** if like exists then remove it */
   if (index !== -1) {
+    const postAvailable = PostModel.getById(postId);
+    if (postAvailable === undefined) {
+      throw new CustomErrorHandler(NOT_FOUND_CODE, "Post not found");
+    }
     const deletedLikes = likes.splice(index, 1);
     return deletedLikes[0];
   } else {
     /** if like does not exist then add it */
-    const newLike = { id: uid(), userId, postId };
+    const newLike = { id: uid(), likeAt: currentDateTime(), userId, postId };
     likes.push(newLike);
     return newLike;
   }

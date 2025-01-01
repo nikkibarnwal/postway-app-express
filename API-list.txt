@@ -28,3 +28,14 @@ DELETE /comments/:id - Delete a comment by ID Done
 GET /likes/:id - Get all like by post ID
 GET /likes/toggle/:id - toggle a like by post ID
 
+# Additional task routes 
+
+GET /posts/filter - Get all posts matched caption Done
+GET /posts/draft - save a posts as a draft Done
+GET /posts/archive - archive a posts Done
+GET /posts/sort/:type - Sort post based on createdDate and user enggegment Done
+
+# Routes from bookmark.routes.js
+
+GET /bookmarks - Get all books by logged in userid
+GET /bookmarks/toggle/:id - toggle a bookmark by post ID

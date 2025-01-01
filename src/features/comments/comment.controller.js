@@ -5,7 +5,8 @@ import * as CommentModel from "./comment.model.js";
 /** get all comments for specific post*/
 export const allComments = (req, res) => {
   const postId = req.params.id;
-  const comments = CommentModel.getByPostId(postId);
+  const { page, limit } = req.query;
+  const comments = CommentModel.getByPostId(postId, page, limit);
   if (comments.length > 0) {
     res
       .status(SUCCESS_CODE)

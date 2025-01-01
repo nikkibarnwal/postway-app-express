@@ -1,5 +1,5 @@
 import CustomErrorHandler from "../../error/CustomErrorHandler.js";
-import { NOT_FOUND_CODE, uid } from "../../utils/common.js";
+import { NOT_FOUND_CODE, paginate, uid } from "../../utils/common.js";
 import * as PostsModel from "../posts/post.model.js";
 const comments = [
   {
@@ -29,8 +29,17 @@ const comments = [
 ];
 
 /** get all comments by postid */
-export const getByPostId = (postId) =>
-  comments.filter((comment) => Number(comment.postId) === Number(postId));
+export const getByPostId = (postId, page, limit) => {
+  const post = PostsModel.getById(postId);
+  if (post === undefined) {
+    throw new CustomErrorHandler(NOT_FOUND_CODE, "Post not found");
+  } else {
+    const filteredComments = comments.filter(
+      (comment) => Number(comment.postId) === Number(postId)
+    );
+    return paginate(filteredComments, page, limit);
+  }
+};
 
 /** get specific comments by comments id */
 export const getById = (commentId) =>
