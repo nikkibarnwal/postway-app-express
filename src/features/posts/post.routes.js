@@ -15,11 +15,11 @@ postRouter.post(
   PostsController.createPosts
 );
 
-postRouter.put("/:id", (req, res) => {
-  res.send("Update a post by id");
-});
-postRouter.delete("/:id", (req, res) => {
-  res.send("Delete a post by id");
-});
+postRouter.put(
+  "/:id",
+  uploadFile.single("imageUrl"),
+  PostsController.updatePosts
+);
+postRouter.delete("/:id", PostsController.deletePost);
 
 export default postRouter;

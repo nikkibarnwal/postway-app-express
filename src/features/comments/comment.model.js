@@ -1,3 +1,6 @@
+import CustomErrorHandler from "../../error/CustomErrorHandler.js";
+import { NOT_FOUND_CODE, uid } from "../../utils/common.js";
+import * as PostsModel from "../posts/post.model.js";
 const comments = [
   {
     id: 1,
@@ -25,4 +28,44 @@ const comments = [
   },
 ];
 
-export const get = () => comments;
+/** get all comments by postid */
+export const getByPostId = (postId) =>
+  comments.filter((comment) => Number(comment.postId) === Number(postId));
+
+/** get specific comments by comments id */
+export const getById = (commentId) =>
+  comments.find((comment) => Number(comment.id) === Number(commentId));
+
+/** create a new comment */
+export const create = (comment) => {
+  const isPostExist = PostsModel.getById(comment.postId);
+  if (isPostExist === undefined) {
+    throw new CustomErrorHandler(NOT_FOUND_CODE, "Post not found");
+  } else {
+    const newComment = { id: uid(), ...comment };
+    comments.push(newComment);
+    return newComment;
+  }
+};
+
+/** update a comment */
+export const update = (commentId, comment) => {
+  /** check if the comment exists by comments id */
+  const index = comments.findIndex((c) => Number(c.id) === Number(commentId));
+  if (index !== -1) {
+    comments[index] = { ...comments[index], content: comment };
+    return comments[index];
+  }
+  throw new CustomErrorHandler(NOT_FOUND_CODE, "Comment not found");
+};
+
+/** delete a comment by comment id*/
+export const deleteComment = (commentId) => {
+  /** check if the comment exists */
+  const index = comments.findIndex((c) => Number(c.id) === Number(commentId));
+  if (index !== -1) {
+    comments.splice(index, 1);
+    return true;
+  }
+  throw new CustomErrorHandler(NOT_FOUND_CODE, "Comment not found");
+};
