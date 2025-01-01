@@ -7,6 +7,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
       .status(err.statusCode)
       .json({ success: false, message: err.message });
   } else {
+    // console.error(err);
     return res.status(INTERNAL_SERVER_ERROR_CODE).json({
       success: false,
       message: "Oops! Something went wrong please try again later",

@@ -1,13 +1,12 @@
-import exp from "constants";
 import express from "express";
+import * as LikeController from "./like.controller.js";
 
 const likeRouter = express.Router();
 
-likeRouter.get("/:id", (req, res) => {
-  res.send("get all likes for a post");
-});
-likeRouter.get("/toggle/:id", (req, res) => {
-  res.send("toggle like for a post");
-});
+/** get all likes for a post id */
+likeRouter.get("/:id", LikeController.getLikesByPostId);
+
+/** toggle like on a specific post */
+likeRouter.get("/toggle/:id", LikeController.toggleSpecificLike);
 
 export default likeRouter;
