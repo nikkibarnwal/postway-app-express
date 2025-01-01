@@ -1,6 +1,7 @@
 import {
   BAD_REQUEST_CODE,
   CREATED_CODE,
+  imagesPath,
   NOT_FOUND_CODE,
   SUCCESS_CODE,
 } from "../../utils/common.js";
@@ -50,7 +51,7 @@ export const createPosts = (req, res) => {
   /** get the user id from the request object by jwt middleware */
   const { id } = req.user;
   const { caption } = req.body;
-  const imageUrl = req.file.filename;
+  const imageUrl = "uploads/" + req.file.filename;
   const newpost = PostModel.create({ userId: id, caption, imageUrl });
   res
     .status(CREATED_CODE)
