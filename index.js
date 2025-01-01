@@ -8,6 +8,7 @@ import likeRouter from "./src/features/likes/like.routes.js";
 import jwtAuthMiddleware from "./src/middlewares/jwtAuth.middleware.js";
 import errorHandlerMiddleware from "./src/middlewares/errorHandler.middleware.js";
 import invalidRoutesMiddleware from "./src/middlewares/invalidRoutes.middleware.js";
+import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 
 /**2 create an express app */
 const app = express();
@@ -16,6 +17,9 @@ configDotenv();
 /**2.1 parse the incoming JSON data */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+/**2.2 create a middleware to log the incoming request */
+app.use(loggerMiddleware);
 
 /**3 create routes */
 
